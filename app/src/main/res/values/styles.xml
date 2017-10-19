@@ -1,11 +1,21 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- Status bar color 顶部状态栏 -->
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!-- 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色 -->
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- toolbar上文字颜色 -->
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <!-- 使窗口保持半透明 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowShowWallpaper">false</item>
+        <!-- Inactive thumb color（SwitchCompat圆球默认颜色） -->
+        <item name="colorSwitchThumbNormal">@color/colorPrimaryDark</item>
+        <!-- Inactive track color(30% transparency)（SwitchCompat引导带颜色） -->
+        <item name="android:colorForeground">@color/colorAccent</item>
     </style>
 
 </resources>
