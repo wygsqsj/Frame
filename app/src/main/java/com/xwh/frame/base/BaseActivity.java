@@ -12,7 +12,7 @@ import com.xwh.frame.utils.LogUtil;
 public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<V>>
         extends AppCompatActivity implements IBaseView {
 
-    protected P presenter;
+    protected P mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,9 +26,9 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     }
 
     private void initBasePresenter() {
-        presenter = initPresenter();
-        if (presenter != null)
-            presenter.attach((V) this);
+        mPresenter = initPresenter();
+        if (mPresenter != null)
+            mPresenter.attach((V) this);
     }
 
 

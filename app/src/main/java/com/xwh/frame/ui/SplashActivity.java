@@ -40,4 +40,10 @@ public class SplashActivity extends BaseActivity<ISplashView,SplashPresenter> {
     protected int initLayoutResID() {
         return R.layout.activity_splash;
     }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mPresenter.checkApk();
+    }
 }
