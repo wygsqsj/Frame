@@ -11,7 +11,7 @@ public class SharedPreUtil {
     /**
      * 保存的文件名
      */
-    private final String SP_NAME = "frame";
+    private static final String SP_NAME = "frame";
 
 
     /**

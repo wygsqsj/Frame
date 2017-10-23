@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.xwh.frame.utils.LogUtil;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by xwh on 2017/10/18.
  */
@@ -19,6 +21,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         super.onCreate(savedInstanceState);
         LogUtil.i("onCreate");
         setContentView(initLayoutResID());
+        ButterKnife.bind(this);
         initBasePresenter();
         initViews();
         initSet();

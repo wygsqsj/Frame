@@ -8,17 +8,16 @@ import com.xwh.frame.base.BaseActivity;
 import com.xwh.frame.mvp.presenter.MainPresenter;
 import com.xwh.frame.mvp.view.IMainView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity
         extends BaseActivity<IMainView, MainPresenter>
-            implements IMainView {
+        implements IMainView {
 
 
-    @Bind(R.id.main_quest)
-    Button mMainQuest;
+    @BindView(R.id.main_quest)
+    Button mainQuest;
 
     @Override
     protected MainPresenter initPresenter() {
@@ -33,8 +32,8 @@ public class MainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
     }
+
 
     @OnClick(R.id.main_quest)
     public void onViewClicked() {

@@ -279,6 +279,7 @@ public class AppUtil {
 
     /**
      * 获取IMEI号
+     * 添加权限：READ_PHONE_STATE
      */
     public static String getIMEI(Context context) {
         TelephonyManager mTelephonyMgr

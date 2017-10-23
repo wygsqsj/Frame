@@ -5,14 +5,21 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import com.xwh.frame.R;
 import com.xwh.frame.base.BaseActivity;
 import com.xwh.frame.mvp.presenter.SplashPresenter;
 import com.xwh.frame.mvp.view.ISplashView;
+import com.xwh.frame.utils.LogUtil;
 
-public class SplashActivity extends BaseActivity<ISplashView,SplashPresenter> {
+import butterknife.BindView;
+import butterknife.OnClick;
 
+public class SplashActivity extends BaseActivity<ISplashView, SplashPresenter> {
+
+    @BindView(R.id.splash_btn)
+    Button splashBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,8 +49,13 @@ public class SplashActivity extends BaseActivity<ISplashView,SplashPresenter> {
     }
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void initSet() {
+        super.initSet();
+    }
+
+    @OnClick(R.id.splash_btn)
+    public void onViewClicked() {
+        LogUtil.i("点击事件");
         mPresenter.checkApk();
     }
 }

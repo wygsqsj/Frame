@@ -14,10 +14,12 @@ import retrofit2.Retrofit;
 public class App extends Application {
 
     public static Retrofit retrofit;
+    private static Context context;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
         initConfig();
     }
 
@@ -34,7 +36,7 @@ public class App extends Application {
      * @return
      */
     public static Context getContext() {
-        return this;
+        return context;
     }
 
 }
