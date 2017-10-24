@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -49,11 +50,10 @@ public class RetrofitConfig {
                 String headerValue = headerValues.get(0);
                 HttpUrl newBaseUrl = null;
                 if ("0".equals(headerValue)) {
-                    newBaseUrl = HttpUrl.parse(HttpConstans.OTHER_URL);
+//                    newBaseUrl = HttpUrl.parse(HttpConstans.OTHER_URL);
                 } else {
                     newBaseUrl = HttpUrl.parse(HttpConstans.BASE_URL);
                 }
-
                 //从request中获取原有的HttpUrl实例oldHttpUrl
                 HttpUrl oldHttpUrl = request.url();
                 //重建新的HttpUrl，修改需要修改的url部分
@@ -91,6 +91,7 @@ public class RetrofitConfig {
     private void retrofitBuilder() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(HttpConstans.BASE_URL)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
                 .client(getOkHttpClent())
                 .build();

@@ -1,37 +1,26 @@
 package com.xwh.frame.net;
 
-import android.graphics.Bitmap;
+import java.util.Map;
 
-import com.xwh.frame.mvp.model.bean.response.ResponseBean;
-
-import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Url;
 import rx.Observable;
 
 /**
  * Created by xwh on 2017/5/9.
  */
-public abstract class Service {
-    /**
-     * 项目中统一的请求格式
-     *
-     * @param infoJson
-     * @return
-     */
-    @FormUrlEncoded
-    @POST("crf_finance/main.do")
-    public abstract Observable<ResponseBean> mainRequest(@Field("infoJson") String infoJson);
+public interface Service {
 
     /**
-     * 下载图片
+     * 项目中统一的Post请求格式
+     * 由于不同的项目请求参数不同在此只写map类型的请求参数
+     * 返回数据一般都是Response类中所写的形式，所以统一封装一下
      *
-     * @param imgUrl
-     * @return Bitmap
+     * @return Observable<Response>
      */
-    @GET
-    public abstract Observable<Bitmap> getBitmap(@Url String imgUrl);
+    @FormUrlEncoded
+    @POST("japi/toh")
+    Observable<String> post(@FieldMap Map<String, String> requestMap);
 
 }

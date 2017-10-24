@@ -6,9 +6,9 @@ package com.xwh.frame.net;
  */
 public class HttpConstans {
 
-    public static final String BASE_URL = "https://test.crfchina.com/";
+//    public static final String BASE_URL = "https://test.crfchina.com/";
 
-    public static final String OTHER_URL = "https://test.crfchina.com/";
+    public static final String BASE_URL = "http://api.juheapi.com/";
 
 
     public static final long connectTimeoutMills = 8 * 1000L;
