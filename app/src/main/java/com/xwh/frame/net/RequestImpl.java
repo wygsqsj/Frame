@@ -43,7 +43,7 @@ public class RequestImpl<T> {
      * @param requestMap 请求的参数
      * @return Observable<T>
      */
-    public Observable<T> post(Map<String, String> requestMap) {
+    public Observable post(Map<String, String> requestMap) {
         return service.post(requestMap)
                 .map(new HttpResultFunc())
                 .subscribeOn(Schedulers.io())
@@ -58,11 +58,12 @@ public class RequestImpl<T> {
     private class HttpResultFunc<T> implements Func1<ResponseBean, T> {
         @Override
         public T call(ResponseBean responseBean) {
-            String resultCode = responseBean.getErrorCode();
+            String resultCode = responseBean.getError_code();
             T data = null;
             if (HttpConstans.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
                 LogUtil.i("retrofit", "获取到Data数据");
                 String str = responseBean.getResult().toString().trim();
+                LogUtil.i("解析后的数据" + str);
                 data = (T) mGson.fromJson(responseBean.getResult().toString().trim(), beanClass);
             } else if (HttpConstans.RESULT_UN_LOGIN.equals(resultCode)) {   //未登录或者登陆超时
                 LogUtil.i("retrofit", "未登录或超时");

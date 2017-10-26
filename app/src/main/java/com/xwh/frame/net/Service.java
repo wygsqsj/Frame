@@ -1,10 +1,14 @@
 package com.xwh.frame.net;
 
+import com.xwh.frame.mvp.model.bean.ResponseBean;
+
 import java.util.Map;
 
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -14,13 +18,21 @@ public interface Service {
 
     /**
      * 项目中统一的Post请求格式
-     * 由于不同的项目请求参数不同在此只写map类型的请求参数
-     * 返回数据一般都是Response类中所写的形式，所以统一封装一下
      *
-     * @return Observable<Response>
+     * @return Observable<ResponseBean>
      */
     @FormUrlEncoded
-    @POST("japi/toh")
-    Observable<String> post(@FieldMap Map<String, String> requestMap);
+    @POST("ja/toh")
+    Observable<ResponseBean> post(@FieldMap Map<String, String> requestMap);
+
+
+    /**
+     * 项目中统一的Get请求格式
+     *
+     * @param requestMap
+     * @return
+     */
+    @GET("joke/content/list.from")
+    Observable<ResponseBean> get(@QueryMap Map<String, String> requestMap);
 
 }

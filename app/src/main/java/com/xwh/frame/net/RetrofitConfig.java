@@ -93,6 +93,7 @@ public class RetrofitConfig {
                 .baseUrl(HttpConstans.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
+//                .addConverterFactory(ScalarsConverterFactory.create())
                 .client(getOkHttpClent())
                 .build();
 
