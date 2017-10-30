@@ -11,7 +11,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by xwh on 2017/10/19.
@@ -92,9 +92,13 @@ public class RetrofitConfig {
         retrofit = new Retrofit.Builder()
                 .baseUrl(HttpConstans.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
-//                .addConverterFactory(ScalarsConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .client(getOkHttpClent())
+
+
+
+
                 .build();
 
     }

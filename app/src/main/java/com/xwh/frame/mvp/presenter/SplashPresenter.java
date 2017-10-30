@@ -2,6 +2,7 @@ package com.xwh.frame.mvp.presenter;
 
 import com.xwh.frame.base.BasePresenter;
 import com.xwh.frame.mvp.model.SplashModel;
+import com.xwh.frame.mvp.model.bean.BeforeToday;
 import com.xwh.frame.mvp.model.bean.Joke;
 import com.xwh.frame.mvp.view.ISplashView;
 import com.xwh.frame.net.RequestImpl;
@@ -27,7 +28,7 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
     }
 
     public void checkApk() {
-        Map<String, String> map = new HashMap<>();
+      /*  Map<String, String> map = new HashMap<>();
         map.put("key", "75f8d152fbb1d1618a0f9a1fa5bbdb34");
         map.put("page", "2");
         map.put("sort", "desc");
@@ -43,7 +44,7 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtil.i("成功" + e.toString());
+                        LogUtil.i("错误" + e.toString());
                     }
 
                     @Override
@@ -51,19 +52,17 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
                         LogUtil.i("成功" + joke.toString());
 
                     }
-                });
+                });*/
 
 
-        /*Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("key", "be6da3836eb321422a21d00beda5a542");
         map.put("v", "1");
         map.put("month", "10");
         map.put("day", "26");
-        retrofit.create(Service.class)
-                .get(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ResponseBean>() {
+        new RequestImpl<BeforeToday>(BeforeToday.class)
+                .post(map)
+                .subscribe(new Subscriber<BeforeToday>() {
                     @Override
                     public void onCompleted() {
 
@@ -71,14 +70,14 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        LogUtil.i("失败" + e.toString());
+                        LogUtil.i("错误" + e.toString());
                     }
 
                     @Override
-                    public void onNext(ResponseBean responseBean) {
-                        LogUtil.i("成功" + responseBean.toString());
+                    public void onNext(BeforeToday beforeToday) {
+                        LogUtil.i("成功" + beforeToday.toString());
                     }
-                });*/
+                });
 
     }
 }

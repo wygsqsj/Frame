@@ -18,17 +18,14 @@ public class BeforeToday {
         this.result = result;
     }
 
+    @Override
+    public String toString() {
+        return "BeforeToday{" +
+                "result=" + result +
+                '}';
+    }
+
     public static class ResultBean {
-        /**
-         * day : 1
-         * des : 1907年11月1日 电影导演吴永刚诞生 　　吴永刚，1907年11月1日生于江苏吴县。1932年后参加影片《三个摩登女性》、《母性之光》的拍摄工作。1934年在联华影片公司编导处女作《神女》，一举成名，...
-         * id : 9000
-         * lunar : 丁未年九月廿六
-         * month : 11
-         * pic :
-         * title : 电影导演吴永刚诞生
-         * year : 1907
-         */
 
         private int day;
         private String des;
@@ -101,6 +98,20 @@ public class BeforeToday {
 
         public void setYear(int year) {
             this.year = year;
+        }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "day=" + day +
+                    ", des='" + des + '\'' +
+                    ", id=" + id +
+                    ", lunar='" + lunar + '\'' +
+                    ", month=" + month +
+                    ", pic='" + pic + '\'' +
+                    ", title='" + title + '\'' +
+                    ", year=" + year +
+                    '}';
         }
     }
 }

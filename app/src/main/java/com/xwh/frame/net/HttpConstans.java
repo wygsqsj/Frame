@@ -6,8 +6,8 @@ package com.xwh.frame.net;
  */
 public class HttpConstans {
 
-//    public static final String BASE_URL = "http://api.juheapi.com/";
-    public static final String BASE_URL = "http://japi.juhe.cn/";
+    public static final String BASE_URL = "http://api.juheapi.com/";
+//    public static final String BASE_URL = "http://japi.juhe.cn/";
 
 
     public static final long connectTimeoutMills = 8 * 1000L;

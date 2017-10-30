@@ -1,7 +1,5 @@
 package com.xwh.frame.net;
 
-import com.xwh.frame.mvp.model.bean.ResponseBean;
-
 import java.util.Map;
 
 import retrofit2.http.FieldMap;
@@ -23,7 +21,7 @@ public interface Service {
      */
     @FormUrlEncoded
     @POST("japi/toh")
-    Observable<ResponseBean> post(@FieldMap Map<String, String> requestMap);
+    Observable<String> post(@FieldMap Map<String, String> requestMap);
 
 
     /**
@@ -33,6 +31,6 @@ public interface Service {
      * @return
      */
     @GET("joke/content/list.from")
-    Observable<ResponseBean> get(@QueryMap Map<String, String> requestMap);
+    Observable<String> get(@QueryMap Map<String, String> requestMap);
 
 }
