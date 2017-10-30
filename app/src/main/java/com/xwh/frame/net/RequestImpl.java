@@ -43,12 +43,26 @@ public class RequestImpl<T> {
      * @param requestMap 请求的参数
      * @return Observable<T>
      */
-    public Observable post(Map<String, String> requestMap) {
+    public Observable<T> post(Map<String, String> requestMap) {
         return service.post(requestMap)
-                .map(new HttpResultFunc())
+                .map(new HttpResultFunc<T>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+    /**
+     * get统一的请求格式
+     *
+     * @param requestMap 请求的参数
+     * @return Observable<T>
+     */
+    public Observable<T> get(Map<String, String> requestMap) {
+        return service.get(requestMap)
+                .map(new HttpResultFunc<T>())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
 
     /**
      * 用来统一处理Http的resultCode,并将返回数据的的Data部分剥离出来返回给Subscriber

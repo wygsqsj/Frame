@@ -22,7 +22,7 @@ public interface Service {
      * @return Observable<ResponseBean>
      */
     @FormUrlEncoded
-    @POST("ja/toh")
+    @POST("japi/toh")
     Observable<ResponseBean> post(@FieldMap Map<String, String> requestMap);
 
 
