@@ -69,7 +69,10 @@ public class RequestImpl<T> {
 
 
     /**
-     * 用来统一处理Http的resultCode,并将返回数据的的Data部分剥离出来返回给Subscriber
+     * 用来统一处理Http的resultCode,并将返回的数据部分剥离出来返回给Subscriber
+     * <p>
+     * 由于某些项目后台中的数据类型为JSONArray或者JSONObject不确定，所以
+     * 先判断result类型之后再进行操作，JSONObject直接解析，JSONArray先转成JSONObject
      *
      * @param <T> Subscriber真正需要的数据类型，也就是Data部分的数据类型
      */
@@ -82,17 +85,17 @@ public class RequestImpl<T> {
                 JSONObject jsonResponse = new JSONObject(response);
                 String resultCode = jsonResponse.getString("error_code");
                 String reason = jsonResponse.getString("reason");
-                if (HttpConstans.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
-                    LogUtil.i("retrofit", "获取到Data数据");
+                if (HttpConstans.RESULT_SUCCESS.equals(resultCode)) {
                     String resulst = jsonResponse.getString("result");
                     objResulst = new JSONTokener(resulst).nextValue();
-                    if (objResulst instanceof JSONObject) {
+                    if (objResulst instanceof JSONObject) {//直接转换为对应的bean
                         JSONObject resultObject = (JSONObject) objResulst;
-                        LogUtil.i("resulstObject", resultObject.toString());
-                        data = (T) mGson.fromJson(resultObject.toString(), beanClass);
-                    } else if (objResulst instanceof JSONArray) {
+                        data = (T) mGson.fromJson(resulst, beanClass);
+                    } else if (objResulst instanceof JSONArray) {//转换成JSONObject
                         JSONArray resultArray = (JSONArray) objResulst;
-                        LogUtil.i("resulstArray", resultArray.toString());
+                        JSONObject newResult = new JSONObject();
+                        newResult.put("list", resultArray);
+                        data = (T) mGson.fromJson(newResult.toString(), beanClass);
                     }
                 } else if (HttpConstans.RESULT_UN_LOGIN.equals(resultCode)) {   //未登录或者登陆超时
                     LogUtil.i("retrofit", "未登录或超时");

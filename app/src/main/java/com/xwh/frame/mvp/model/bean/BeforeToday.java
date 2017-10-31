@@ -2,34 +2,35 @@ package com.xwh.frame.mvp.model.bean;
 
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by XH on 2017/10/24.
  */
 
 public class BeforeToday {
 
-    private List<ResultBean> result;
+    private List<ResultBean> list;
 
-    public List<ResultBean> getResult() {
-        return result;
+    public List<ResultBean> getList() {
+        return list;
     }
 
-    public void setResult(List<ResultBean> result) {
-        this.result = result;
+    public void setList(List<ResultBean> list) {
+        this.list = list;
     }
 
     @Override
     public String toString() {
         return "BeforeToday{" +
-                "result=" + result +
+                "result=" + list +
                 '}';
     }
 
     public static class ResultBean {
-
         private int day;
         private String des;
-        private int id;
+        private String _id;
         private String lunar;
         private int month;
         private String pic;
@@ -52,12 +53,12 @@ public class BeforeToday {
             this.des = des;
         }
 
-        public int getId() {
-            return id;
+        public String getId() {
+            return _id;
         }
 
-        public void setId(int id) {
-            this.id = id;
+        public void setId(String id) {
+            this._id = id;
         }
 
         public String getLunar() {
