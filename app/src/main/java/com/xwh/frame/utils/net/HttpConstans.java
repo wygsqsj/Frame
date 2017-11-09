@@ -1,4 +1,4 @@
-package com.xwh.frame.net;
+package com.xwh.frame.utils.net;
 
 /**
  * Created by xwh on 2017/10/20.

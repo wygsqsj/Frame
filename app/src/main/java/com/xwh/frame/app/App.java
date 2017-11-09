@@ -3,7 +3,7 @@ package com.xwh.frame.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.xwh.frame.net.RetrofitConfig;
+import com.xwh.frame.utils.net.RetrofitConfig;
 import com.xwh.frame.utils.LogUtil;
 
 import retrofit2.Retrofit;

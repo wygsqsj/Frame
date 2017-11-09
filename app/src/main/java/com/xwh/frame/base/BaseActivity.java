@@ -77,6 +77,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     protected void onResume() {
         LogUtil.i("onResume");
         super.onResume();
+        mPresenter.onResume();
     }
 
     @Override
@@ -89,5 +90,6 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     protected void onDestroy() {
         LogUtil.i("onDestroy");
         super.onDestroy();
+        mPresenter.detach();
     }
 }
