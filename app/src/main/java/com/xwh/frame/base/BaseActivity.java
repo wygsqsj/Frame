@@ -5,11 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.xwh.frame.utils.LogUtil;
+import com.xwh.frame.utils.net.config.ExceptionHandler;
 
 import butterknife.ButterKnife;
 
 /**
  * Created by xwh on 2017/10/18.
+ *
  */
 public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<V>>
         extends AppCompatActivity implements IBaseView {
@@ -24,8 +26,9 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         ButterKnife.bind(this);
         initBasePresenter();
         initViews();
-        initSet();
         initListener();
+        initSet();
+        initData();
     }
 
     private void initBasePresenter() {
@@ -33,7 +36,6 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         if (mPresenter != null)
             mPresenter.attach((V) this);
     }
-
 
     protected abstract P initPresenter();
 
@@ -91,5 +93,25 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         LogUtil.i("onDestroy");
         super.onDestroy();
         mPresenter.detach();
+    }
+
+    @Override
+    public void showProgressDialog() {
+
+    }
+
+    @Override
+    public void hideProgressDialog() {
+
+    }
+
+    @Override
+    public void immedHideProDialog() {
+
+    }
+
+    @Override
+    public void fail(ExceptionHandler.ResponseThrowable exception) {
+
     }
 }

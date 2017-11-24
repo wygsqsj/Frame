@@ -12,7 +12,7 @@ public abstract class BasePresenter<V extends IBaseView>
 
     public void attach(V view) {
         this.view = view;
-        initModel();
+       initModel();
     }
 
     /**

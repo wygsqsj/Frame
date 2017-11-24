@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.net;
+package com.xwh.frame.utils.net.base;
 
 import com.xwh.frame.app.App;
 import com.xwh.frame.base.BasePresenter;
@@ -15,16 +15,16 @@ import rx.subjects.PublishSubject;
  * Created by xwh on 2017/11/9.
  */
 
-abstract class BaseApi {
+public abstract class BaseApi {
 
     /**
      * 默认生命周期为destory，当页面Destory之后取消数据传递
      */
     private BasePresenter.LifeCycleEvent lifeCycleEventFlag = BasePresenter.LifeCycleEvent.DESTROY;
     protected Service service;
-    Observable<BasePresenter.LifeCycleEvent> compareLifecycleObservable;
+    protected Observable<BasePresenter.LifeCycleEvent> compareLifecycleObservable;
 
-    BaseApi(PublishSubject<BasePresenter.LifeCycleEvent> lifecycleSubject) {
+    protected BaseApi(PublishSubject<BasePresenter.LifeCycleEvent> lifecycleSubject) {
         service = App.retrofit.create(Service.class);
         compareLifecycleObservable =
                 lifecycleSubject.takeFirst(new Func1<BasePresenter.LifeCycleEvent, Boolean>() {

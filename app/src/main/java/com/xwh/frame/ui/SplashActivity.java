@@ -1,25 +1,25 @@
 package com.xwh.frame.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import com.xwh.frame.R;
 import com.xwh.frame.base.BaseActivity;
 import com.xwh.frame.mvp.presenter.SplashPresenter;
 import com.xwh.frame.mvp.view.ISplashView;
-import com.xwh.frame.utils.LogUtil;
 
-import butterknife.BindView;
-import butterknife.OnClick;
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class SplashActivity extends BaseActivity<ISplashView, SplashPresenter> {
-
-    @BindView(R.id.splash_btn)
-    Button splashBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,11 +51,18 @@ public class SplashActivity extends BaseActivity<ISplashView, SplashPresenter> {
     @Override
     protected void initSet() {
         super.initSet();
+        Observable.timer(3, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        SplashActivity.this.finish();
+                    }
+                });
     }
 
-    @OnClick(R.id.splash_btn)
-    public void onViewClicked() {
-        LogUtil.i("点击事件");
-        mPresenter.checkApk();
-    }
+
 }

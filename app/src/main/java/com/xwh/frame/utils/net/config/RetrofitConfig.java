@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.net;
+package com.xwh.frame.utils.net.config;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,6 +12,7 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by xwh on 2017/10/19.
@@ -93,7 +94,7 @@ public class RetrofitConfig {
                 .baseUrl(HttpConstans.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
-//                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())//String 转换器
                 .client(getOkHttpClent())
                 .build();
 

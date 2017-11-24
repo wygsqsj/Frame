@@ -40,6 +40,4 @@ public class ResponseBean {
     public void setResult(JsonObject result) {
         this.result = result;
     }
-
-
 }

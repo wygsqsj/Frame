@@ -1,8 +1,11 @@
-package com.xwh.frame.utils.net;
+package com.xwh.frame.utils.net.request;
 
 import com.google.gson.Gson;
 import com.xwh.frame.mvp.model.bean.ResponseBean;
 import com.xwh.frame.utils.LogUtil;
+import com.xwh.frame.utils.net.base.BaseApi;
+import com.xwh.frame.utils.net.config.HttpConstans;
+import com.xwh.frame.utils.net.config.ResultException;
 
 import java.util.Map;
 
@@ -38,18 +41,11 @@ public class BeanRequest<T> extends BaseApi {
                 .subscribe(subscriber);
     }
 
-    public void post(String questString, Subscriber<T> subscriber) {
-        service.post(questString)
-                .compose(new HttpTypeTransformor())
-                .subscribe(subscriber);
-    }
-
     public void get(String path, Map<String, String> questMap, Subscriber<T> subscriber) {
         service.get(path, questMap)
                 .compose(new HttpTypeTransformor())
                 .subscribe(subscriber);
     }
-
 
     /**
      * 用于返回对应数据的Observerble转换器

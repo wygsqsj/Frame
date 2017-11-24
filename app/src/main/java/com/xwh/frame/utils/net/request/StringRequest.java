@@ -1,7 +1,10 @@
-package com.xwh.frame.utils.net;
+package com.xwh.frame.utils.net.request;
 
 import com.xwh.frame.base.BasePresenter;
 import com.xwh.frame.mvp.model.bean.ResponseBean;
+import com.xwh.frame.utils.net.base.BaseApi;
+import com.xwh.frame.utils.net.config.HttpConstans;
+import com.xwh.frame.utils.net.config.ResultException;
 
 import java.util.Map;
 
@@ -20,7 +23,7 @@ import rx.subjects.PublishSubject;
  * Created by xwh on 2017/11/9.
  */
 
-public class StringRequest<Stirng> extends BaseApi {
+public class StringRequest extends BaseApi {
 
     StringRequest(PublishSubject<BasePresenter.LifeCycleEvent> lifecycleSubject) {
         super(lifecycleSubject);
@@ -32,11 +35,6 @@ public class StringRequest<Stirng> extends BaseApi {
                 .subscribe(subscriber);
     }
 
-    public void post(String questString, Subscriber<String> subscriber) {
-        service.post(questString)
-                .compose(new HttpStringTransformor())
-                .subscribe(subscriber);
-    }
 
     public void get(String path, Map<String, String> questMap, Subscriber<String> subscriber) {
         service.get(path, questMap)

@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.net;
+package com.xwh.frame.utils.net.config;
 
 /**
  * Created by xwh on 2017/10/20.
@@ -6,9 +6,8 @@ package com.xwh.frame.utils.net;
  */
 public class HttpConstans {
 
-//    public static final String BASE_URL = "http://api.juheapi.com/";
+    //    public static final String BASE_URL = "http://api.juheapi.com/";
     public static final String BASE_URL = "http://japi.juhe.cn/";
-
 
     public static final long connectTimeoutMills = 8 * 1000L;
 
@@ -29,11 +28,29 @@ public class HttpConstans {
      */
     public static final String RESULT_SERVICE_WRONG = "9999";
     /**
-     * 解析失败
-     */
-    public static final String RESULT_JSON_FAIL = "101";
-    /**
      * 网络连接失败
      */
     public static final String RESULT_NET_FAIL = "102";
+
+    /**
+     * http协议出错
+     */
+    public static final String NET_HTTP_ERROR = "100";
+    /**
+     * 解析失败
+     */
+    public static final String NET_RESULT_JSON_FAIL = "1001";
+    /**
+     * 网络连接失败
+     */
+    public static final String NET_RESULT_NET_FAIL = "1002";
+
+    /**
+     * 证书验证错误
+     */
+    public static String NET_SSL_ERROR = "1003";
+    /**
+     * 未知网络错误
+     */
+    public static String NET_UNKNOWN_ERROR = "1004";
 }
