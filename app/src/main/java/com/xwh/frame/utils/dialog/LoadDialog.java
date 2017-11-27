@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 
 import com.xwh.frame.utils.TimerUtil;
+import com.xwh.frame.utils.dialog.dialog.StarDialog;
 
 /**
  * Created by xwh on 2017/11/24.

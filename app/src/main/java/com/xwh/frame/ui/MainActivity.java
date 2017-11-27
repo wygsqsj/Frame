@@ -14,8 +14,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class MainActivity
-        extends BaseActivity<IMainView, MainPresenter>
-        implements IMainView {
+        extends BaseActivity<IMainView, MainPresenter> implements IMainView {
 
     @BindView(R.id.main_quest)
     Button mainQuest;
