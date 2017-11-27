@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.xwh.frame.R;
 import com.xwh.frame.utils.LogUtil;
+import com.xwh.frame.utils.StatusBarCompat;
 import com.xwh.frame.utils.dialog.LoadDialog;
 import com.xwh.frame.utils.net.config.ExceptionHandler;
 
@@ -24,6 +26,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         super.onCreate(savedInstanceState);
         LogUtil.i("onCreate");
         setContentView(initLayoutResID());
+        StatusBarCompat.compat(this, R.color.colorPrimary);
         ButterKnife.bind(this);
         initBasePresenter();
         initViews();
