@@ -2,6 +2,7 @@ package com.xwh.frame.utils.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
@@ -65,9 +66,13 @@ public class StarDialog {
         if (mDialog != null) {
             mDialog.show();
         } else {
-            final Dialog zLoadingDialog = create();
-            zLoadingDialog.show();
+            mDialog = create();
+            mDialog.show();
         }
+    }
+
+    public boolean isShowing() {
+        return mDialog != null && mDialog.isShowing();
     }
 
     private Dialog create() {
@@ -108,7 +113,13 @@ public class StarDialog {
         if (mDialog != null) {
             mDialog.cancel();
         }
-        mDialog = null;
+    }
+
+    public void setOnCancelListener(DialogInterface.OnCancelListener listener) {
+        if (mDialog == null) {
+            mDialog = create();
+        }
+        mDialog.setOnCancelListener(listener);
     }
 
     private boolean isContextNotExist() {

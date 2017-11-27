@@ -31,8 +31,8 @@ public abstract class ProgressSubscribe<T> extends BaseSubscribe<T> {
 
     @Override
     public void onError(Throwable e) {
-        super.onError(e);
         view.immedHideProDialog();
+        super.onError(e);
     }
 
 

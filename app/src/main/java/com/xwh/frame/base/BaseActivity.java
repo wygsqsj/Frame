@@ -5,18 +5,19 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.xwh.frame.utils.LogUtil;
+import com.xwh.frame.utils.dialog.LoadDialog;
 import com.xwh.frame.utils.net.config.ExceptionHandler;
 
 import butterknife.ButterKnife;
 
 /**
  * Created by xwh on 2017/10/18.
- *
  */
 public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<V>>
         extends AppCompatActivity implements IBaseView {
 
     protected P mPresenter;
+    private LoadDialog mLoadDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,21 +94,30 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         LogUtil.i("onDestroy");
         super.onDestroy();
         mPresenter.detach();
+        if (mLoadDialog != null)
+            mLoadDialog.destroy();
     }
 
     @Override
     public void showProgressDialog() {
-
+        if (mLoadDialog == null) {
+            mLoadDialog = new LoadDialog();
+        }
+        mLoadDialog.showProgressDialog(this, "loding....");
     }
 
     @Override
     public void hideProgressDialog() {
-
+        if (mLoadDialog != null) {
+            mLoadDialog.hideProgressDialog();
+        }
     }
 
     @Override
     public void immedHideProDialog() {
-
+        if (mLoadDialog != null) {
+            mLoadDialog.immedHideProDialog();
+        }
     }
 
     @Override

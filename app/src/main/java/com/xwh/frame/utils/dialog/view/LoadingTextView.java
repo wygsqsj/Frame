@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.xwh.frame.R;
 import com.xwh.frame.utils.dialog.animatorbuilder.TextBuilder;
