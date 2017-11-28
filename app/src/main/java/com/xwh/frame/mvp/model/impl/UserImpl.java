@@ -1,12 +1,15 @@
 package com.xwh.frame.mvp.model.impl;
 
 import com.xwh.frame.mvp.model.bean.Joke;
+import com.xwh.frame.mvp.model.bean.UpDateApk;
 import com.xwh.frame.utils.net.base.BaseSubscribe;
+import com.xwh.frame.utils.net.config.HttpConstants;
 import com.xwh.frame.utils.net.request.BeanRequest;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import rx.Subscriber;
 import rx.subjects.PublishSubject;
 
 /**
@@ -19,6 +22,11 @@ public class UserImpl {
 
     public UserImpl(PublishSubject lifecycleSubject) {
         this.lifecycleSubject = lifecycleSubject;
+    }
+
+    public void checkUpdate(Subscriber<UpDateApk> subscriber) {
+        new BeanRequest<UpDateApk>(lifecycleSubject, UpDateApk.class)
+                .get(HttpConstants.UPDATEAPK_URL, subscriber);
     }
 
     public void load(BaseSubscribe<Joke> progressSubscribe) {
@@ -46,7 +54,6 @@ public class UserImpl {
 
         new BeanRequest<Joke>(lifecycleSubject, Joke.class)
                 .post(map, progressSubscribe);
-
     }
 
 }

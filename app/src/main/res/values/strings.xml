@@ -3,4 +3,11 @@
     <string name="title_home">首页</string>
     <string name="title_msg">资讯</string>
     <string name="title_my">我的</string>
+
+    <string name="vast_sure">确认</string>
+    <string name="vast_cancel">取消</string>
+
+    <string name="text_update_title">发现新版本%1$s</string>
+    <string name="text_cancel">以后再说</string>
+    <string name="text_update">马上升级</string>
 </resources>

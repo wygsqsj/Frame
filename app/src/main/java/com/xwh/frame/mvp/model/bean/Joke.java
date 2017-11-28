@@ -3,6 +3,7 @@ package com.xwh.frame.mvp.model.bean;
 import java.util.List;
 
 /**
+ *
  * Created by xwh on 2017/10/26.
  */
 

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.xwh.frame.mvp.model.bean.ResponseBean;
 import com.xwh.frame.utils.LogUtil;
 import com.xwh.frame.utils.net.base.BaseApi;
-import com.xwh.frame.utils.net.config.HttpConstans;
+import com.xwh.frame.utils.net.config.HttpConstants;
 import com.xwh.frame.utils.net.config.ResultException;
 
 import java.util.Map;
@@ -47,6 +47,12 @@ public class BeanRequest<T> extends BaseApi {
                 .subscribe(subscriber);
     }
 
+    public void get(String path, Subscriber<T> subscriber) {
+        service.get(path)
+                .compose(new HttpTypeTransformor())
+                .subscribe(subscriber);
+    }
+
     /**
      * 用于返回对应数据的Observerble转换器
      */
@@ -60,7 +66,7 @@ public class BeanRequest<T> extends BaseApi {
                         public T call(ResponseBean responseBean) {
                             T data;
                             String resultCode = responseBean.getError_code();
-                            if (HttpConstans.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
+                            if (HttpConstants.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
                                 LogUtil.i("retrofit", "获取到Data数据");
                                 data = (T) mGson.fromJson(responseBean.getResult().toString().trim(), beanClass);
                                 return data;

@@ -35,7 +35,6 @@ public abstract class ProgressSubscribe<T> extends BaseSubscribe<T> {
         super.onError(e);
     }
 
-
     @Override
     public void onNext(T t) {
         _onNext(t);

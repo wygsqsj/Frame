@@ -18,7 +18,6 @@ import butterknife.OnClick;
  * <p>
  * Created by XH on 2017/11/27.
  */
-
 public class HomeFragment extends BaseFragment<IHomeView, HomePresenter>
         implements IHomeView {
 
@@ -40,7 +39,6 @@ public class HomeFragment extends BaseFragment<IHomeView, HomePresenter>
     private HomeFragment() {
     }
 
-
     @Override
     protected int initLayoutResID() {
         return R.layout.fragment_home;
@@ -50,7 +48,6 @@ public class HomeFragment extends BaseFragment<IHomeView, HomePresenter>
     protected HomePresenter initPresenter() {
         return new HomePresenter();
     }
-
 
     @OnClick(R.id.request)
     public void onViewClicked() {

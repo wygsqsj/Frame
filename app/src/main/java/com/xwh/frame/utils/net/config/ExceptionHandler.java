@@ -43,7 +43,7 @@ public class ExceptionHandler {
             if (null == NetConnectUtil.getCurrentNetworkState(App.getContext())) {
                 message = "当前网络不可用，请检查您的网络连接！";
             }
-            ex = new ResponseThrowable(e, HttpConstans.NET_HTTP_ERROR, message);
+            ex = new ResponseThrowable(e, HttpConstants.NET_HTTP_ERROR, message);
             return ex;
         } else if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
@@ -61,31 +61,31 @@ public class ExceptionHandler {
                     message = "服务器异常，请稍后重试！";
                     break;
             }
-            ex = new ResponseThrowable(e, HttpConstans.NET_HTTP_ERROR, message);
+            ex = new ResponseThrowable(e, HttpConstants.NET_HTTP_ERROR, message);
             return ex;
         } else if (e instanceof ResultException) {
             ResultException resultException = (ResultException) e;
             switch (resultException.getErrorCode()) {
-                case HttpConstans.RESULT_UN_LOGIN://未登录或超时
+                case HttpConstants.RESULT_UN_LOGIN://未登录或超时
                     break;
 
-                case HttpConstans.NET_RESULT_JSON_FAIL://解析失败
+                case HttpConstants.NET_RESULT_JSON_FAIL://解析失败
                     break;
             }
             ex = new ResponseThrowable(resultException, resultException.getErrorCode(), resultException.getMessage());
             return ex;
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException) {
-            ex = new ResponseThrowable(e, HttpConstans.NET_RESULT_JSON_FAIL, "数据解析错误");
+            ex = new ResponseThrowable(e, HttpConstants.NET_RESULT_JSON_FAIL, "数据解析错误");
             return ex;
         } else if (e instanceof ConnectException) {
-            ex = new ResponseThrowable(e, HttpConstans.NET_RESULT_NET_FAIL, "网络连接失败");
+            ex = new ResponseThrowable(e, HttpConstants.NET_RESULT_NET_FAIL, "网络连接失败");
             return ex;
         } else if (e instanceof javax.net.ssl.SSLHandshakeException) {
-            ex = new ResponseThrowable(e, HttpConstans.NET_SSL_ERROR, "网络证书验证失败");
+            ex = new ResponseThrowable(e, HttpConstants.NET_SSL_ERROR, "网络证书验证失败");
             return ex;
         } else {
-            ex = new ResponseThrowable(e, HttpConstans.NET_UNKNOWN_ERROR, "发生了未知的网络异常，请稍后重试！");
+            ex = new ResponseThrowable(e, HttpConstants.NET_UNKNOWN_ERROR, "发生了未知的网络异常，请稍后重试！");
             return ex;
         }
     }

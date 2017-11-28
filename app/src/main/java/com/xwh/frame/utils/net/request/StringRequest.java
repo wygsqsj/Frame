@@ -3,7 +3,7 @@ package com.xwh.frame.utils.net.request;
 import com.xwh.frame.base.BasePresenter;
 import com.xwh.frame.mvp.model.bean.ResponseBean;
 import com.xwh.frame.utils.net.base.BaseApi;
-import com.xwh.frame.utils.net.config.HttpConstans;
+import com.xwh.frame.utils.net.config.HttpConstants;
 import com.xwh.frame.utils.net.config.ResultException;
 
 import java.util.Map;
@@ -56,7 +56,7 @@ public class StringRequest extends BaseApi {
                         public String call(ResponseBean responseBean) {
                             String data;
                             String resultCode = responseBean.getError_code();
-                            if (HttpConstans.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
+                            if (HttpConstants.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
                                 data = responseBean.getResult().toString();
                                 return data;
                             } else {

@@ -1,13 +1,14 @@
 package com.xwh.frame.utils.net.config;
 
 /**
- * Created by xwh on 2017/10/20.
- * 网络请求配置类
+ * Created by xwh on 2017/11/28.
  */
-public class HttpConstans {
 
-    //    public static final String BASE_URL = "http://api.juheapi.com/";
+public class HttpConstants {
+
     public static final String BASE_URL = "http://japi.juhe.cn/";
+
+    public static final String UPDATEAPK_URL = "apkUpdate.do";
 
     public static final long connectTimeoutMills = 8 * 1000L;
 
@@ -48,9 +49,13 @@ public class HttpConstans {
     /**
      * 证书验证错误
      */
-    public static String NET_SSL_ERROR = "1003";
+    public static final String NET_SSL_ERROR = "1003";
+    /**
+     * 写入网络下载文件出错
+     */
+    public static final String WRITE_FILE_ERROR = "1004";
     /**
      * 未知网络错误
      */
-    public static String NET_UNKNOWN_ERROR = "1004";
+    public static final String NET_UNKNOWN_ERROR = "1005";
 }

@@ -51,9 +51,9 @@ public class RetrofitConfig {
                 String headerValue = headerValues.get(0);
                 HttpUrl newBaseUrl = null;
                 if ("0".equals(headerValue)) {
-//                    newBaseUrl = HttpUrl.parse(HttpConstans.OTHER_URL);
+//                    newBaseUrl = HttpUrl.parse(HttpConstants.OTHER_URL);
                 } else {
-                    newBaseUrl = HttpUrl.parse(HttpConstans.BASE_URL);
+                    newBaseUrl = HttpUrl.parse(HttpConstants.BASE_URL);
                 }
                 //从request中获取原有的HttpUrl实例oldHttpUrl
                 HttpUrl oldHttpUrl = request.url();
@@ -91,7 +91,7 @@ public class RetrofitConfig {
 
     private void retrofitBuilder() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(HttpConstans.BASE_URL)
+                .baseUrl(HttpConstants.BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())//添加json数据转换器，可自己定义
                 .addConverterFactory(ScalarsConverterFactory.create())//String 转换器
@@ -103,9 +103,9 @@ public class RetrofitConfig {
     private OkHttpClient getOkHttpClent() {
         //添加okhttp配置
         return new OkHttpClient.Builder()
-                .connectTimeout(HttpConstans.connectTimeoutMills, TimeUnit.SECONDS)
-                .readTimeout(HttpConstans.readTimeoutMills, TimeUnit.SECONDS)
-                .writeTimeout(HttpConstans.writeTimeoutMills, TimeUnit.SECONDS)
+                .connectTimeout(HttpConstants.connectTimeoutMills, TimeUnit.SECONDS)
+                .readTimeout(HttpConstants.readTimeoutMills, TimeUnit.SECONDS)
+                .writeTimeout(HttpConstants.writeTimeoutMills, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)//出现错误后是否重连
                 .build();
     }

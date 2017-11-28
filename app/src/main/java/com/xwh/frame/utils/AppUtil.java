@@ -75,6 +75,20 @@ public class AppUtil {
     }
 
     /**
+     * 返回当前程序版本号
+     */
+    public static int getVersionCode(Context context) {
+        int ReturnValue = 0;
+        try {
+            ReturnValue = context.getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0).versionCode;
+        } catch (Exception e) {
+            ReturnValue = 0;
+        }
+        return ReturnValue;
+    }
+
+    /**
      * 安装apk
      *
      * @param context 上下文

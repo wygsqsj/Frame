@@ -1,5 +1,6 @@
 package com.xwh.frame.ui;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,14 @@ import android.widget.FrameLayout;
 
 import com.xwh.frame.R;
 import com.xwh.frame.base.BaseActivity;
+import com.xwh.frame.mvp.model.bean.UpDateApk;
 import com.xwh.frame.mvp.presenter.MainPresenter;
 import com.xwh.frame.mvp.view.IMainView;
+import com.xwh.frame.service.DownService;
+import com.xwh.frame.utils.AppUtil;
+import com.xwh.frame.utils.LogUtil;
 import com.xwh.frame.utils.ToastUtil;
+import com.xwh.frame.utils.dialog.DialogUtil;
 
 import butterknife.BindView;
 
@@ -53,6 +59,7 @@ public class MainActivity
         msgFragment = MessageFragment.getInstance();
         myFragment = MyFragment.getInstance();
         fragment = homeFragment;
+        mPresenter.checkUpdate();
     }
 
     @Override
@@ -130,5 +137,28 @@ public class MainActivity
                     .commitAllowingStateLoss();
         }
         this.fragment = fragment;
+    }
+
+    @Override
+    public void checkUpdateSucceed(final UpDateApk upDateApk) {
+        if (Integer.valueOf(upDateApk.versionCode) <= AppUtil.getVersionCode(getApplicationContext())) {
+            return;
+        }
+        DialogUtil.showMulti(MainActivity.this,
+                String.format(getApplicationContext().getResources().getString(R.string.text_update_title),
+                        upDateApk.versionName),
+                upDateApk.brief,
+                getApplicationContext().getResources().getString(R.string.text_update),
+                getApplicationContext().getResources().getString(R.string.text_cancel),
+                new DialogUtil.OnDialogClickListener() {
+                    @Override
+                    public void resultString(String str) {
+                       LogUtil.i("点击事件" + upDateApk.url);
+                        //开启下载服务
+                        Intent intent = new Intent(MainActivity.this, DownService.class);
+                        startService(intent);
+
+                    }
+                });
     }
 }
