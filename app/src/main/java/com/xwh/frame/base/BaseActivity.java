@@ -13,6 +13,11 @@ import com.xwh.frame.utils.net.config.ExceptionHandler;
 import butterknife.ButterKnife;
 
 /**
+ * Activity基类的抽取
+ * 1.布局ID的获取设置为抽象方法，交由具体的Activity实现
+ * 2.将加载框的具体实现放到基类中，子类可以在加载数据时调用
+ * 3.页面设置方法构建出来，子类需要时重写即可
+ * <p>
  * Created by xwh on 2017/10/18.
  */
 public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<V>>
@@ -26,13 +31,14 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
         super.onCreate(savedInstanceState);
         LogUtil.i("onCreate");
         setContentView(initLayoutResID());
+        //状态栏的高度适配
         StatusBarCompat.compat(this, R.color.colorPrimary);
         ButterKnife.bind(this);
         initBasePresenter();
         initViews();
         initListener();
-        initSet();
         initData();
+        initSet();
     }
 
     @Override
@@ -79,7 +85,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends BasePresenter<
     private void initBasePresenter() {
         mPresenter = initPresenter();
         if (mPresenter != null)
-            mPresenter.attach((V) this);
+            mPresenter.attach((V)this);
     }
 
     protected abstract P initPresenter();

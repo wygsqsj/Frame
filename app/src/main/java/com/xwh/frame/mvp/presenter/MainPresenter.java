@@ -19,17 +19,5 @@ public class MainPresenter extends BasePresenter<IMainView> {
         mModel = new UserImpl(lifecycleSubject);
     }
 
-    public void load() {
-        mModel.load(new ProgressSubscribe<Joke>(view) {
-            @Override
-            protected void _onError(Throwable e) {
-                LogUtil.i("错误" + e.toString());
-            }
 
-            @Override
-            protected void _onNext(Joke joke) {
-                LogUtil.i("正确" + joke.toString());
-            }
-        });
-    }
 }

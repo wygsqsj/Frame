@@ -1,29 +1,40 @@
 package com.xwh.frame.ui;
 
-import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.xwh.frame.R;
 import com.xwh.frame.base.BaseActivity;
-import com.xwh.frame.mvp.model.bean.Joke;
 import com.xwh.frame.mvp.presenter.MainPresenter;
 import com.xwh.frame.mvp.view.IMainView;
+import com.xwh.frame.utils.ToastUtil;
 
 import butterknife.BindView;
 
+/**
+ * MainActivity的实现
+ * 1.使用BottomNavigationView实现底部导航栏（不能超过5个item）
+ */
 public class MainActivity
         extends BaseActivity<IMainView, MainPresenter> implements IMainView {
 
-    @BindView(R.id.content)
+    @BindView(R.id.activity_main_fragment)
     FrameLayout mContent;
-    @BindView(R.id.navigation)
+    @BindView(R.id.activity_main_navigation)
     BottomNavigationView mNavigation;
+    private HomeFragment homeFragment;
+    private MessageFragment msgFragment;
+    private MyFragment myFragment;
+    private Fragment fragment;
+    /**
+     * 返回键按两次退出,此为记录第一次按下时间
+     */
+    private long exitTime = 0;
 
     @Override
     protected MainPresenter initPresenter() {
@@ -36,14 +47,18 @@ public class MainActivity
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initData() {
+        super.initData();
+        homeFragment = HomeFragment.getInstance();
+        msgFragment = MessageFragment.getInstance();
+        myFragment = MyFragment.getInstance();
+        fragment = homeFragment;
     }
 
     @Override
     protected void initSet() {
         super.initSet();
-        mNavigation.setSelectedItemId(R.id.navigation);
+        showFirstFragment();
     }
 
     @Override
@@ -53,62 +68,67 @@ public class MainActivity
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .replace(R.id.content, TabFragment.from(item.getItemId()).fragment())
-                                .commit();
+                        switch (item.getItemId()) {
+                            case R.id.navigation_home:
+                                showFragment(homeFragment);
+                                break;
+                            case R.id.navigation_msg:
+                                showFragment(msgFragment);
+                                break;
+                            case R.id.navigation_my:
+                                showFragment(myFragment);
+                                break;
+                        }
+
                         return true;
                     }
                 });
     }
 
     @Override
-    public void loadsucceed(Joke joke) {
-
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) { // 监控/拦截/屏蔽 返回键
+            if ((System.currentTimeMillis() - exitTime > 2 * 1000)) {
+                ToastUtil.showShort(this.getBaseContext(), "再按一次退出程序");
+                exitTime = System.currentTimeMillis();
+            } else {
+                MainActivity.this.finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
-    private enum TabFragment {
-        home(R.id.navigation_home, HomeFragment.class),
-        msg(R.id.navigation_msg, MessageFragment.class),
-        my(R.id.navigation_msg, MyFragment.class);
-
-        private Fragment fragment;
-        private final int menuId;
-        private final Class<? extends Fragment> clazz;
-
-        TabFragment(@IdRes int menuId, Class<? extends Fragment> clazz) {
-            this.menuId = menuId;
-            this.clazz = clazz;
-        }
-
-        @NonNull
-        public Fragment fragment() {
-            if (fragment == null) {
-                try {
-                    fragment = clazz.newInstance();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    fragment = new Fragment();
-                }
-            }
-            return fragment;
-        }
-
-        public static TabFragment from(int itemId) {
-            for (TabFragment fragment : values()) {
-                if (fragment.menuId == itemId) {
-                    return fragment;
-                }
-            }
-            return home;
-        }
-
-        public static void onDestroy() {
-            for (TabFragment fragment : values()) {
-                fragment.fragment = null;
-            }
-        }
+    /**
+     * 显示首页Fragment
+     **/
+    private void showFirstFragment() {
+        mNavigation.getMenu().getItem(1).setChecked(true);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.activity_main_fragment, msgFragment)
+                .commitAllowingStateLoss();
+        this.fragment = msgFragment;
     }
 
+    /**
+     * 显示指定Fragment
+     *
+     * @param fragment 要显示的Fragment
+     */
+    private void showFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragment.isAdded()) {// 先判断是否被add过
+            // 隐藏当前的fragment，add下一个到Activity中
+            transaction.hide(this.fragment)
+                    .add(R.id.activity_main_fragment, fragment)
+                    .commitAllowingStateLoss();
+        } else {
+            // 隐藏当前的fragment，显示下一个
+            transaction.hide(this.fragment)
+                    .show(fragment)
+                    .commitAllowingStateLoss();
+        }
+        this.fragment = fragment;
+    }
 }

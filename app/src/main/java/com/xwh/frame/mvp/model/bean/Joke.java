@@ -55,6 +55,8 @@ public class Joke {
         public void setUpdatetime(String updatetime) {
             this.updatetime = updatetime;
         }
+
+
     }
 
     @Override

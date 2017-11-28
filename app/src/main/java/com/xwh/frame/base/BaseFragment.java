@@ -1,8 +1,8 @@
 package com.xwh.frame.base;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +12,7 @@ import com.xwh.frame.utils.dialog.LoadDialog;
 import com.xwh.frame.utils.net.config.ExceptionHandler;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by xwh on 2017/11/27.
@@ -23,6 +24,7 @@ public abstract class BaseFragment<V extends IBaseView, P extends BasePresenter<
     private LoadDialog mLoadDialog;
     protected P mPresenter;
     protected View rootView;
+    private Unbinder unbinder;
 
 
     @Override
@@ -36,6 +38,7 @@ public abstract class BaseFragment<V extends IBaseView, P extends BasePresenter<
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         LogUtil.i("fragment --- onCreateView");
         rootView = inflater.inflate(initLayoutResID(), container, false);
+        unbinder = ButterKnife.bind(this, rootView);
         ButterKnife.bind(rootView);
         initBasePresenter();
         initViews();
@@ -67,7 +70,9 @@ public abstract class BaseFragment<V extends IBaseView, P extends BasePresenter<
     public void onDestroy() {
         LogUtil.i("fragment -- onDestroy");
         super.onDestroy();
-        mPresenter.detach();
+        unbinder.unbind();
+        if (mPresenter != null)
+            mPresenter.detach();
         if (mLoadDialog != null)
             mLoadDialog.destroy();
     }
