@@ -68,14 +68,17 @@ public class BeanRequest<T> extends BaseApi {
                             String resultCode = responseBean.getError_code();
                             if (HttpConstants.RESULT_SUCCESS.equals(resultCode)) {  //获取到数据
                                 LogUtil.i("retrofit", "获取到Data数据");
-                                data = (T) mGson.fromJson(responseBean.getResult().toString().trim(), beanClass);
+                                if (beanClass == String.class) {
+                                    data = (T) responseBean.getResult().toString();
+                                } else {
+                                    data = (T) mGson.fromJson(responseBean.getResult().toString().trim(), beanClass);
+                                }
                                 return data;
                             } else {
                                 throw new ResultException(resultCode, responseBean.getReason());
                             }
                         }
-                    })
-                    .takeUntil(compareLifecycleObservable)
+                    }).takeUntil(compareLifecycleObservable)
                     .subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread());

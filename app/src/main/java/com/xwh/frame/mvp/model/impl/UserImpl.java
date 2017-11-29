@@ -29,7 +29,7 @@ public class UserImpl {
                 .get(HttpConstants.UPDATEAPK_URL, subscriber);
     }
 
-    public void load(BaseSubscribe<Joke> progressSubscribe) {
+    public void load(BaseSubscribe<String> progressSubscribe) {
         Map<String, String> map = new HashMap<>();
         map.put("key", "75f8d152fbb1d1618a0f9a1fa5bbdb34");
         map.put("page", "2");
@@ -38,7 +38,7 @@ public class UserImpl {
         map.put("time", "1418816972");
        /* new BeanRequest<Joke>(lifecycleSubject, Joke.class)
                 .post(map, progressSubscribe);*/
-        new BeanRequest<Joke>(lifecycleSubject, Joke.class)
+        new BeanRequest<String>(lifecycleSubject, String.class)
                 .get("joke/content/list.from",
                         map, progressSubscribe);
     }

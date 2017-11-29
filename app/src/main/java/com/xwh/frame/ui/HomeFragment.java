@@ -1,5 +1,6 @@
 package com.xwh.frame.ui;
 
+import android.annotation.SuppressLint;
 import android.widget.Button;
 
 import com.xwh.frame.R;
@@ -21,7 +22,7 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFragment<IHomeView, HomePresenter>
         implements IHomeView {
 
-    private static HomeFragment instance;
+    private static  HomeFragment instance;
     @BindView(R.id.request)
     Button mRequest;
 
@@ -36,6 +37,7 @@ public class HomeFragment extends BaseFragment<IHomeView, HomePresenter>
         return instance;
     }
 
+    @SuppressLint("ValidFragment")
     private HomeFragment() {
     }
 
