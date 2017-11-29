@@ -58,7 +58,6 @@ public class MainActivity
         homeFragment = HomeFragment.getInstance();
         msgFragment = MessageFragment.getInstance();
         myFragment = MyFragment.getInstance();
-        fragment = homeFragment;
         mPresenter.checkUpdate();
     }
 
@@ -110,12 +109,12 @@ public class MainActivity
      * 显示首页Fragment
      **/
     private void showFirstFragment() {
-        mNavigation.getMenu().getItem(1).setChecked(true);
+        mNavigation.getMenu().getItem(0).setChecked(true);
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.activity_main_fragment, msgFragment)
+                .add(R.id.activity_main_fragment, homeFragment)
                 .commitAllowingStateLoss();
-        this.fragment = msgFragment;
+        fragment = homeFragment;
     }
 
     /**
@@ -153,7 +152,7 @@ public class MainActivity
                 new DialogUtil.OnDialogClickListener() {
                     @Override
                     public void resultString(String str) {
-                       LogUtil.i("点击事件" + upDateApk.url);
+                        LogUtil.i("点击事件" + upDateApk.url);
                         //开启下载服务
                         Intent intent = new Intent(MainActivity.this, DownService.class);
                         startService(intent);

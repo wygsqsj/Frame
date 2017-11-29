@@ -2,12 +2,13 @@ package com.xwh.frame.utils.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 
+import com.xwh.frame.R;
 import com.xwh.frame.utils.TimerUtil;
 import com.xwh.frame.utils.dialog.dialog.StarDialog;
 
 /**
+ * 加载框的构建
  * Created by xwh on 2017/11/24.
  */
 
@@ -24,9 +25,9 @@ public class LoadDialog {
      **/
     private void initProgress(Context context, String message) {
         dialog = new StarDialog(context);
-        dialog.setLoadingColor(Color.BLACK)
+        dialog.setLoadingColor(R.color.darkturquoise)
                 .setHintText(message)
-                .setHintTextColor(Color.GRAY);
+                .setHintTextColor(R.color.gray);
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialogInterface) {

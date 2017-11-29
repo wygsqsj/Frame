@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:fitsSystemWindows">false</item>
-        <!-- Actionbar color toolbar-->
+        <!-- 应用的主要色调，actionBar、toolbar默认使用该颜色-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <!-- Status bar color 顶部状态栏 -->
+        <!-- 应用的主要暗色调，statusBar默认使用 -->
         <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <!-- 窗口背景颜色 -->
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <!-- 底部虚拟按键颜色 -->
+        <item name="android:navigationBarColor">@color/PNG_FIVE_DARK</item>
+        <!-- 各种控件的默认状态颜色 -->
+        <item name="android:colorControlNormal">@color/colorPrimary</item>
         <!-- 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色 -->
         <item name="colorAccent">@color/colorAccent</item>
         <!-- toolbar上文字颜色 -->
         <item name="android:textColorPrimary">@color/colorPrimaryLight</item>
-        <item name="android:windowBackground">@color/colorBackground</item>
         <!-- 允许使用transitions -->
         <item name="android:windowContentTransitions">true</item>
         <!-- 指定进入和退出transitions -->
         <item name="android:windowEnterTransition">@transition/fade_in</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
-        <!-- 底部状态栏颜色 -->
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
-        <!-- 各种默认状态颜色 -->
-        <item name="android:colorControlNormal">@color/colorPrimary</item>
         <!-- 使窗口保持半透明 -->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowShowWallpaper">false</item>
         <!-- Inactive thumb color（SwitchCompat圆球默认颜色） -->
         <item name="colorSwitchThumbNormal">@color/colorAccent</item>
-        <!-- Inactive track color(30% transparency)（SwitchCompat引导带颜色） -->
+        <!-- 应用的前景色，ListView的分割线颜色，SwitchCompat引导带颜色-->
         <item name="android:colorForeground">@color/colorPrimaryDark</item>
         <!-- 按钮等水波纹颜色 -->
         <item name="android:colorControlHighlight">@color/almost_black_item_b</item>

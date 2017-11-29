@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.xwh.frame.R;
+import com.xwh.frame.utils.SystemUtil;
 import com.xwh.frame.utils.dialog.view.LoadingImageView;
 import com.xwh.frame.utils.dialog.view.LoadingTextView;
 
@@ -21,15 +22,15 @@ import java.lang.ref.WeakReference;
 public class StarDialog {
     private final WeakReference<Context> mContext;
     private final int mThemeResId;
-    private int mLoadingBuilderColor;
+    private int mLoadingBuilderColor = R.color.darkturquoise;
     private String mHintText;
     private Dialog mDialog;
-    private int mHintTextColor = -1;
+    private int mHintTextColor = R.color.gray;
     private boolean mCancelable = true;
     private boolean mCanceledOnTouchOutside = true;
 
     public StarDialog(Context context) {
-        this(context, R.style.alert_dialog);
+        this(context, R.style.loading_dialog);
     }
 
     public StarDialog(Context context, int mThemeResId) {
@@ -88,11 +89,11 @@ public class StarDialog {
         LoadingTextView text = (LoadingTextView) contentView.findViewById(R.id.loading_text);
         if (!TextUtils.isEmpty(mHintText)) {
             text.setText(mHintText);
-            text.setColorFilter(this.mHintTextColor == -1 ? this.mLoadingBuilderColor : this.mHintTextColor);
+            text.setColorFilter(SystemUtil.getColor(mContext.get(), this.mHintTextColor));
         }
         //imageView的配置
         LoadingImageView image = (LoadingImageView) contentView.findViewById(R.id.loading_image);
-        image.setColorFilter(this.mLoadingBuilderColor);
+        image.setColorFilter(SystemUtil.getColor(mContext.get(), this.mLoadingBuilderColor));
         //填充dialog
         mDialog.setContentView(contentView);
         mDialog.setCancelable(this.mCancelable);
