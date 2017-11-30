@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog.drawable;
+package com.xwh.frame.utils.widget.dialog.drawable;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +10,7 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.xwh.frame.utils.dialog.animatorbuilder.BaseBuilder;
+import com.xwh.frame.utils.widget.dialog.animatorbuilder.BaseBuilder;
 
 
 /**

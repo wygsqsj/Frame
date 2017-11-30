@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xwh.frame.utils.LogUtil;
-import com.xwh.frame.utils.dialog.LoadDialog;
+import com.xwh.frame.utils.widget.dialog.LoadDialog;
 import com.xwh.frame.utils.net.config.ExceptionHandler;
 
 import butterknife.ButterKnife;
@@ -43,8 +43,8 @@ public abstract class BaseFragment<V extends IBaseView, P extends BasePresenter<
         initBasePresenter();
         initViews();
         initListener();
-        initSet();
         initData();
+        initSet();
         return rootView;
     }
 

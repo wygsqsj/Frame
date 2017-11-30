@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog.dialog;
+package com.xwh.frame.utils.widget.dialog.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.xwh.frame.R;
 import com.xwh.frame.utils.SystemUtil;
-import com.xwh.frame.utils.dialog.view.LoadingImageView;
-import com.xwh.frame.utils.dialog.view.LoadingTextView;
+import com.xwh.frame.utils.widget.dialog.view.LoadingImageView;
+import com.xwh.frame.utils.widget.dialog.view.LoadingTextView;
 
 import java.lang.ref.WeakReference;
 

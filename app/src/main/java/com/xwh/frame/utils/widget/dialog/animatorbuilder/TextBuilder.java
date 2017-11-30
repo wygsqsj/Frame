@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog.animatorbuilder;
+package com.xwh.frame.utils.widget.dialog.animatorbuilder;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;

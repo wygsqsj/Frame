@@ -11,10 +11,10 @@
             android:text="@string/title_home" />
     </android.support.v7.widget.Toolbar>
 
-    <Button
-        android:id="@+id/request"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="请求" />
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

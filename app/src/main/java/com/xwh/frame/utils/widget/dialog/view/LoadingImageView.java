@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog.view;
+package com.xwh.frame.utils.widget.dialog.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,8 +9,8 @@ import android.view.View;
 
 import com.xwh.frame.R;
 import com.xwh.frame.utils.SystemUtil;
-import com.xwh.frame.utils.dialog.animatorbuilder.StarBuilder;
-import com.xwh.frame.utils.dialog.drawable.LoadingDrawable;
+import com.xwh.frame.utils.widget.dialog.animatorbuilder.StarBuilder;
+import com.xwh.frame.utils.widget.dialog.drawable.LoadingDrawable;
 
 
 /**

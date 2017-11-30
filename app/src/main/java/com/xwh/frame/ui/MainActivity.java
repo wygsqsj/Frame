@@ -18,7 +18,7 @@ import com.xwh.frame.service.DownService;
 import com.xwh.frame.utils.AppUtil;
 import com.xwh.frame.utils.LogUtil;
 import com.xwh.frame.utils.ToastUtil;
-import com.xwh.frame.utils.dialog.DialogUtil;
+import com.xwh.frame.utils.widget.dialog.DialogUtil;
 
 import butterknife.BindView;
 

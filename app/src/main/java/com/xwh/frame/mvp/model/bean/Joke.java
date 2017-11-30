@@ -3,7 +3,6 @@ package com.xwh.frame.mvp.model.bean;
 import java.util.List;
 
 /**
- *
  * Created by xwh on 2017/10/26.
  */
 
@@ -56,8 +55,6 @@ public class Joke {
         public void setUpdatetime(String updatetime) {
             this.updatetime = updatetime;
         }
-
-
     }
 
     @Override

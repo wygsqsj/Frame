@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog.view;
+package com.xwh.frame.utils.widget.dialog.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,8 +7,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import com.xwh.frame.R;
-import com.xwh.frame.utils.dialog.animatorbuilder.TextBuilder;
-import com.xwh.frame.utils.dialog.drawable.LoadingDrawable;
+import com.xwh.frame.utils.widget.dialog.animatorbuilder.TextBuilder;
+import com.xwh.frame.utils.widget.dialog.drawable.LoadingDrawable;
 
 
 /**

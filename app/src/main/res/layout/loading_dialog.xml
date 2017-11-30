@@ -11,7 +11,7 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <com.xwh.frame.utils.dialog.view.LoadingImageView
+    <com.xwh.frame.utils.widget.dialog.view.LoadingImageView
         android:id="@+id/loading_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:scaleType="fitCenter"
         app:color="@color/darkturquoise" />
 
-    <com.xwh.frame.utils.dialog.view.LoadingTextView
+    <com.xwh.frame.utils.widget.dialog.view.LoadingTextView
         android:id="@+id/loading_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

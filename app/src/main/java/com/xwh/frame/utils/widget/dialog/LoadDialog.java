@@ -1,11 +1,11 @@
-package com.xwh.frame.utils.dialog;
+package com.xwh.frame.utils.widget.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
 
 import com.xwh.frame.R;
 import com.xwh.frame.utils.TimerUtil;
-import com.xwh.frame.utils.dialog.dialog.StarDialog;
+import com.xwh.frame.utils.widget.dialog.dialog.StarDialog;
 
 /**
  * 加载框的构建

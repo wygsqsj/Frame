@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.xwh.frame.R;
 import com.xwh.frame.utils.LogUtil;
 import com.xwh.frame.utils.StatusBarCompat;
-import com.xwh.frame.utils.dialog.LoadDialog;
+import com.xwh.frame.utils.widget.dialog.LoadDialog;
 import com.xwh.frame.utils.net.config.ExceptionHandler;
 
 import butterknife.ButterKnife;

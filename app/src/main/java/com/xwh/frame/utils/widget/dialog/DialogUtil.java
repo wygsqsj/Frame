@@ -1,4 +1,4 @@
-package com.xwh.frame.utils.dialog;
+package com.xwh.frame.utils.widget.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
