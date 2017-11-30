@@ -7,8 +7,13 @@ import com.xwh.frame.utils.net.base.BaseApi;
 import com.xwh.frame.utils.net.config.HttpConstants;
 import com.xwh.frame.utils.net.config.ResultException;
 
+import java.io.File;
 import java.util.Map;
+import java.util.Set;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -49,6 +54,26 @@ public class BeanRequest<T> extends BaseApi {
 
     public void get(String path, Subscriber<T> subscriber) {
         service.get(path)
+                .compose(new HttpTypeTransformor())
+                .subscribe(subscriber);
+    }
+
+    public void upload(String path, Map<String, String> params, Map<String, File> files,
+                       Subscriber<T> subscriber) {
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        //添加参数信息
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            builder.addFormDataPart(entry.getKey(), entry.getValue());
+        }
+        //添加文件
+        Set<String> fileSet = files.keySet();
+        for (String fileName : fileSet) {
+            File file = files.get(fileName);
+            builder.addFormDataPart(fileName,
+                    file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+        }
+        RequestBody requestBody = builder.build();
+        service.upload(path, requestBody)
                 .compose(new HttpTypeTransformor())
                 .subscribe(subscriber);
     }

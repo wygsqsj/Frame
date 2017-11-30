@@ -4,6 +4,8 @@ import com.xwh.frame.mvp.model.bean.ResponseBean;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -57,5 +59,15 @@ public interface Service {
     @GET
     Observable<ResponseBean> get(@Url String url,
                                  @QueryMap(encoded = true) Map<String, String> options);
+
+    /**
+     * 上传单个文件，无其他参数
+     *
+     * @param url  上传地址
+     * @param Body 请求体，参数和文件都可以封装到里面
+     */
+    @POST()
+    Observable<ResponseBean> upload(@Url String url,
+                                    @Body RequestBody Body);
 
 }
