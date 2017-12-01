@@ -4,7 +4,6 @@ import com.google.gson.JsonParseException;
 import com.xwh.frame.app.App;
 import com.xwh.frame.utils.LogUtil;
 import com.xwh.frame.utils.NetConnectUtil;
-import com.xwh.frame.utils.ToastUtil;
 
 import org.json.JSONException;
 
@@ -98,7 +97,6 @@ public class ExceptionHandler {
             super(throwable);
             this.code = code;
             this.message = message;
-            ToastUtil.showShort(App.getContext(), message);
         }
     }
 }
